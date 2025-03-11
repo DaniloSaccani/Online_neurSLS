@@ -4,7 +4,6 @@ import torch.nn.functional as F
 from src.model_trk import ReferenceTrajectory
 
 
-
 def f_loss_states(t, x, sys, Q=None):
     gamma = 1
     if Q is None:
@@ -69,44 +68,19 @@ def f_loss_obst(x, min_dist=1):
     qy3 = qy
     qy4 = qy - min_dist/2
     q = torch.cat((qx,qy), dim=1).view(1,-1).squeeze()
-    q1 = torch.cat((qx1, qy1), dim=1).view(1, -1).squeeze()
-    q2 = torch.cat((qx2, qy2), dim=1).view(1, -1).squeeze()
-    q3 = torch.cat((qx3, qy3), dim=1).view(1, -1).squeeze()
-    q4 = torch.cat((qx4, qy4), dim=1).view(1, -1).squeeze()
 
     mu1 = torch.tensor([[-2.5, 0]])
     mu2 = torch.tensor([[2.5, 0.0]])
     mu3 = torch.tensor([[-1.5, 0.0]])
     mu4 = torch.tensor([[1.5, 0.0]])
-    mu5 = torch.tensor([[-3, 0.0]])
-    mu6 = torch.tensor([[3, 0.0]])
     cov = torch.tensor([[0.2, 0.2]])
     Q1 = normpdf(q, mu=mu1, cov=cov)
     Q2 = normpdf(q, mu=mu2, cov=cov)
     Q3 = normpdf(q, mu=mu3, cov=cov)
     Q4 = normpdf(q, mu=mu4, cov=cov)
 
-    # Q11 = normpdf(q1, mu=mu1, cov=cov)
-    # Q21 = normpdf(q1, mu=mu2, cov=cov)
-    # Q31 = normpdf(q1, mu=mu3, cov=cov)
-    # Q41 = normpdf(q1, mu=mu4, cov=cov)
-    #
-    # Q12 = normpdf(q2, mu=mu1, cov=cov)
-    # Q22 = normpdf(q2, mu=mu2, cov=cov)
-    # Q32 = normpdf(q2, mu=mu3, cov=cov)
-    # Q42 = normpdf(q2, mu=mu4, cov=cov)
-    #
-    # Q13 = normpdf(q3, mu=mu1, cov=cov)
-    # Q23 = normpdf(q3, mu=mu2, cov=cov)
-    # Q33 = normpdf(q3, mu=mu3, cov=cov)
-    # Q43 = normpdf(q3, mu=mu4, cov=cov)
 
-    # Q14 = normpdf(q4, mu=mu1, cov=cov)
-    # Q24 = normpdf(q4, mu=mu2, cov=cov)
-    # Q34 = normpdf(q4, mu=mu3, cov=cov)
-    # Q44 = normpdf(q4, mu=mu4, cov=cov)
-
-    return (Q1 + Q2 + Q3 + Q4).sum() # + Q11 + Q12 + Q13 + Q14 + Q21 + Q22 + Q23 + Q24 + Q31 + Q32 + Q33 + Q34 + Q41 + Q42 + Q43 + Q44).sum()
+    return (Q1 + Q2 + Q3 + Q4).sum()
 
 def f_loss_obst_tracking(x, sys=None):
     qx = x[::4].unsqueeze(1)

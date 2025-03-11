@@ -2,9 +2,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
-from src.loss_functions import f_loss_states, f_loss_u, f_loss_ca, f_loss_obst
-from src.model_sys import disturbance
 
 
 class gain(torch.nn.Module):
@@ -195,82 +192,3 @@ class RenG(nn.Module):
         return Q, R, S
 
 
-class InputOL(torch.nn.Module):
-    def __init__(self, m, t_end, active=True, device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')):
-        super().__init__()
-        self.t_end = t_end
-        self.m = m
-        if active:
-            std = 0
-            self.u = torch.nn.Parameter(torch.randn(t_end, m, requires_grad=True, device=device) * std)
-        else:
-            self.u = torch.zeros(t_end, m, device=device)
-
-    def forward(self, t, device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')):
-        if t < self.t_end:
-            return self.u[t, :]
-        else:
-            return torch.zeros(self.m, device=device)
-
-class NoiseReconstruction(nn.Module):
-    def __init__(self, f):
-        super().__init__()
-        n = 4
-        m = 2
-        self.f = f
-
-    def forward(self, t, omega):
-        x_old, u_old = omega
-        x_reconstructed = self.f(t, x_old, u_old)
-        return x_reconstructed
-
-
-class Controller(nn.Module):
-    def __init__(self, f, n, m, n_xi, l, gamma_bar, use_sp=False, t_end_sp=None, device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')):
-        super().__init__()
-        self.n = n
-        self.m = m
-        self.reconstruct_noise = NoiseReconstruction(f)
-        self.ren_l2 = RenG(self.n, self.m, n_xi, l, bias=False, mode="l2stable", gamma=1)
-        self.use_sp = use_sp
-        if use_sp:  # setpoint that enters additively in the reconstruction of omega
-            self.sp = InputOL(n, t_end_sp, active=use_sp)
-
-    def forward(self, t, x_, xi, omega,gamma_bar):
-        psi_x = self.reconstruct_noise(t, omega)
-        w_ = x_ - psi_x
-        if self.use_sp:
-            wplus = w_ + self.sp(t)
-        u_t, xi_ = self.ren_l2(t, wplus, xi)
-        u_ = u_t*gamma_bar
-        omega_ = (x_, u_)
-        return u_, xi_, omega_
-
-
-def terminalCost(time,x,sys,ctl,n_traj,t_end,gamma_bar,wmax,decayw,maxtimew,OLs,alpha_u,alpha_ca,min_dist,Q,alpha_obst,xi):
-    loss = 0
-    for kk in range(n_traj):
-        x = x.detach()
-        w_in = torch.randn((t_end + time + 1, sys.n))
-        w_REN = x.detach()
-        u, xi = ctl(0, w_REN, xi.detach())
-        usys = gamma_bar * u
-        loss_x, loss_u, loss_ca, loss_obst = 0, 0, 0, 0
-        for t in range(t_end):
-            x_ = x
-            # Compute the next state and control input using the system and controller models
-            w_sys = disturbance(time + t, w_in[time + t, :], wmax, decayw, maxtimew)
-            #w_sys = wmax*w_in[time+t,:]*np.exp(-time+t/decayw)
-            x = sys(t, x, usys, w_sys)
-            w_REN = x - sys.f(time+t, x_, usys) + OLs(time+t)
-            u, xi = ctl(t, w_REN, xi)
-            usys = gamma_bar * u
-            # Compute the loss and its components for this time step
-            loss_x = loss_x + f_loss_states(t, x, sys, Q)
-            loss_u = loss_u + alpha_u * f_loss_u(t, usys)
-            loss_ca = loss_ca + alpha_ca * f_loss_ca(x, sys, min_dist)
-            if alpha_obst != 0:
-                loss_obst = loss_obst + alpha_obst * f_loss_obst(x)
-        loss = loss_x + loss_u + loss_ca + loss_obst
-
-    return loss

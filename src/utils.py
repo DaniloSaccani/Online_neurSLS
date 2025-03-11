@@ -14,7 +14,6 @@ def set_params():
     t_end = 100
     n_agents = 2
     x0, xbar = get_ini_cond(n_agents)
-    linear = True
     # # # # # # # # Hyperparameters # # # # # # # #
     learning_rate = 1e-3
     epochs = 1500
@@ -30,8 +29,8 @@ def set_params():
     wmax = 0.1
     decayw = 12
     maxtimew = 70
-    return min_dist, t_end, n_agents, x0, xbar, linear, learning_rate, epochs, Q, alpha_u, alpha_ca, alpha_obst, n_xi, \
-           l, n_traj, std_ini, gamma_bar, wmax, decayw,maxtimew
+    return min_dist, t_end, n_agents, x0, xbar, learning_rate, epochs, Q, alpha_u, alpha_ca, alpha_obst, n_xi, \
+           l, n_traj, std_ini, gamma_bar, wmax, decayw, maxtimew
 
 def set_params_tracking():
     # # # # # # # # Parameters # # # # # # # #
