@@ -69,8 +69,7 @@ The following gifs show trajectories of the vehicles with the approach proposed 
 <img src="./GIF/mountains_pretrained_delta_written.gif" alt="robot_trajectories_with_online_neurSLS" width="400"/>
 </p> 
 
-### Dynamic obstacles problem
-
+# Dynamic obstacles problem
 <p align="center">
 <img src="./GIF/mountains_pretrained_delta_written.gif" alt="robot_trajectories_with_neurSLS" width="400"/>
 <img src="./GIF/mountains_pretrained_delta_written.gif" alt="robot_trajectories_with_online_neurSLS" width="400"/>
