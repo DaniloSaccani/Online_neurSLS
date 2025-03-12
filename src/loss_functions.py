@@ -32,7 +32,7 @@ def f_loss_u(t, u):
 
 
 def f_loss_ca(x, sys, min_dist=1):
-    min_sec_dist = min_dist
+    min_sec_dist = 2*min_dist
     # collision avoidance:
     deltaqx = x[0::4].repeat(sys.n_agents, 1) - x[0::4].repeat(sys.n_agents, 1).transpose(0, 1)
     deltaqy = x[1::4].repeat(sys.n_agents, 1) - x[1::4].repeat(sys.n_agents, 1).transpose(0, 1)
@@ -56,17 +56,9 @@ def normpdf(q, mu, cov):
     return out
 
 
-def f_loss_obst(x, min_dist=1):
+def f_loss_obst(x):
     qx = x[::4].unsqueeze(1)
     qy = x[1::4].unsqueeze(1)
-    qx1 = qx + min_dist/2
-    qx2 = qx
-    qx3 = qx - min_dist/2
-    qx4 = qx
-    qy1 = qy
-    qy2 = qy + min_dist/2
-    qy3 = qy
-    qy4 = qy - min_dist/2
     q = torch.cat((qx,qy), dim=1).view(1,-1).squeeze()
 
     mu1 = torch.tensor([[-2.5, 0]])

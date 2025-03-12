@@ -59,7 +59,7 @@ def set_params_tracking():
 def set_params_online():
     # # # # # # # # Parameters # # # # # # # #
     params = set_params()
-    min_dist, t_end, n_agents, x0, xbar, linear, learning_rate, epochs, Q, \
+    min_dist, t_end, n_agents, x0, xbar, learning_rate, epochs, Q, \
         alpha_u, alpha_ca, alpha_obst, n_xi, l, n_traj, std_ini, gamma_bar, wmax, decayw, maxtimew = params
     learning_rate = 1e-2
     epochs = 400 # 35
@@ -67,10 +67,8 @@ def set_params_online():
     Horizon = 25 #7
     timeInstantOpt = 2
     sim_time = t_end  # this is the simulation time#
-    # GAIN https://ch.mathworks.com/help/control/ref/dynamicsystem.norm.html
     gainF = 1
-    #gainF = 10000
-    return min_dist, t_end, n_agents, x0, xbar, linear, learning_rate, epochs, Q, alpha_u, alpha_ca, alpha_obst, n_xi, \
+    return min_dist, t_end, n_agents, x0, xbar, learning_rate, epochs, Q, alpha_u, alpha_ca, alpha_obst, n_xi, \
         l, n_traj, std_ini, gamma_bar, wmax, decayw,maxtimew, Horizon, timeInstantOpt, sim_time, gainF, n_traj_ol
 
 
