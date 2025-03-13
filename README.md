@@ -1,27 +1,66 @@
-# Online_neurSLS Documentation
-Accompanying code for the paper "Stabilizing Online Adaptation of Stable Neural Closed-loop Maps".
+# Online_neurSLS
 
+This repository accompanies the paper **"Stabilizing Online Adaptation of Stable Neural Closed-loop Maps"** by Danilo Saccani, Luca Furieri, and Giancarlo Ferrari Trecate. 
+It implements **Online Neural System Level Synthesis (Online neuroSLS)** using Recurrent Equilibrium Networks (RENs). 
+The neuroSLS framework enables learning over all stabilizing policies for nonlinear systems, ensuring closed-loop stability by design.
+The proposed approach allows the online adaptation of the neural closed-loop maps.
 
-## Overview
+## Features
 
-This repository contains the code accompanying the paper titled "Stabilizing Online Adaptation of Stable Neural Closed-loop Maps" authored by Danilo Saccani, Luca Furieri, and Giancarlo Ferrari Trecate.
+- Implementation of neuro SLS from "Neural System Level Synthesis: Learning over All Stabilizing Policies for Nonlinear Systems
+" and proposed approach online neuro SLS.
+- Offline and online training examples.
+- Stability guarantees during training.
+- Pretrained models and visualization tools.
 
-For inquiries about the code, please contact:
+## Installation
 
-- Danilo Saccani: [danilo.saccani@epfl.ch](mailto:danilo.saccani@epfl.ch)
+Clone the repository and install dependencies:
 
-## Repository Contents
+```bash
+git clone https://github.com/DaniloSaccani/Online_neurSLS.git
+cd Online_neurSLS
+python -m venv env
+source env/bin/activate  # On Windows, use 'env\Scripts\activate'
+pip install -r requirements.txt
+```
 
-1. **main.py**: Entry point for training the distributed operator using neural networks.
-2. **utils.py**: Contains utility functions and main parameters for the codebase.
-3. **models.py**: Defines models including the system's dynamical model, Recurrent Equilibrium Network (REN) model, and interconnection model of RENs.
-4. **plots.py**: Includes functions for plotting and visualizing training and evaluation results.
+## Repository Structure
 
-## Getting Started
+```
+Online_neurSLS/
+│── src/                     # Source code
+│   │── main.py              # Training script
+│   │── utils.py             # Utility functions
+│   │── models.py            # Neural network models
+│   │── plots.py             # Visualization tools
+│── trained_models/         # Pretrained models
+│── GIF/                    # Performance demonstrations
+│── Main_OfflineT_neurSLS_obstacles.ipynb  # Offline training neuro SLS (dynamic obstacles example)
+│── Main_Offline_neurSLS_mountains.ipynb   # Offline training neuro SLS (mountains example)
+│── Main_Online_neurSLS_mountains.ipynb    # Online update with the proposed approach (mountains example)
+│── README.md                # Documentation
+```
 
 ### Prerequisites
 
 - Dependencies listed in `requirements.txt`
+
+## Usage
+
+Run the provided Jupyter notebooks for offline and online training:
+
+1. **Launch Jupyter Notebook**:
+   ```bash
+   jupyter notebook
+   ```
+2. **Open the desired notebook**:
+   - `Main_OfflineT_neurSLS_obstacles.ipynb`
+   - `Main_Offline_neurSLS_mountains.ipynb`
+   - `Main_Online_neurSLS_mountains.ipynb`
+3. **Run the notebook cells** to train and evaluate the neurSLS controllers.
+
+
 
 ### Installation
 
@@ -56,20 +95,20 @@ python main.py
 The following gifs show trajectories of the vehicles with :
 - (Left) Approach proposed in "Neural System Level Synthesis: Learning over All Stabilizing Policies for Nonlinear Systems".
 - (Right) Proposed Online neurSLS approach.
-# Mountains problem
+#### Mountains problem
 
 <p align="center">
 <img src="./GIF/mountains_pretrained_nodelta.gif" alt="robot_trajectories_with_neurSLS" width="400"/>
 <img src="./GIF/mountains_onlineSLS_nodelta.gif" alt="robot_trajectories_with_online_neurSLS" width="400"/>
 </p> 
 
-# Mountains problem with $\delta$
+#### Mountains problem with sudden impulse $\delta$
 <p align="center">
 <img src="./GIF/mountains_pretrained_delta.gif" alt="robot_trajectories_with_neurSLS" width="400"/>
 <img src="./GIF/mountains_onlineSLS_delta.gif" alt="robot_trajectories_with_online_neurSLS" width="400"/>
 </p> 
 
-# Dynamic obstacles problem
+#### Dynamic obstacles problem
 <p align="center">
 <img src="./GIF/obs_neurSLS.gif" alt="robot_trajectories_with_neurSLS" width="400"/>
 <img src="./GIF/obs_neurSLS.gif" alt="robot_trajectories_with_online_neurSLS" width="400"/>
