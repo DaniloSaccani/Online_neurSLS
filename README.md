@@ -65,7 +65,7 @@ The following gifs show trajectories of the vehicles with the approach proposed 
 
 # Mountains problem with $\delta$
 <p align="center">
-<img src="./GIF/mountains_pretrained_delta_written.gif" alt="robot_trajectories_with_neurSLS" width="400"/>
+<img src="./GIF/mountains_pretrained_delta.gif" alt="robot_trajectories_with_neurSLS" width="400"/>
 <img src="./GIF/mountains_onlineSLS_delta.gif" alt="robot_trajectories_with_online_neurSLS" width="400"/>
 </p> 
 
