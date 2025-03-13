@@ -1,12 +1,10 @@
 # Online_neurSLS Documentation
-Accompanying code for the paper "XXXXX".
+Accompanying code for the paper "Stabilizing Online Adaptation of Stable Neural Closed-loop Maps".
 
-
-# Online neurSLS Documentation
 
 ## Overview
 
-This repository contains the code accompanying the paper titled "XX" authored by Danilo Saccani, Luca Furieri, and Giancarlo Ferrari Trecate.
+This repository contains the code accompanying the paper titled "Stabilizing Online Adaptation of Stable Neural Closed-loop Maps" authored by Danilo Saccani, Luca Furieri, and Giancarlo Ferrari Trecate.
 
 For inquiries about the code, please contact:
 
