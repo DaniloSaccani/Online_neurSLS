@@ -55,7 +55,9 @@ python main.py
 
 ### Coordination in mountains problem 
 
-The following gifs show trajectories of the vehicles with the approach proposed in "Neural System Level Synthesis: Learning over All Stabilizing Policies for Nonlinear Systems" and the one with the proposed Online neurSLS approach.
+The following gifs show trajectories of the vehicles with :
+- (Left) Approach proposed in "Neural System Level Synthesis: Learning over All Stabilizing Policies for Nonlinear Systems".
+- (Right) Proposed Online neurSLS approach.
 # Mountains problem
 
 <p align="center">
