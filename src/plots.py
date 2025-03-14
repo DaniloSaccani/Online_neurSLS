@@ -55,13 +55,14 @@ def plot_trajectories(x, xbar, n_agents, text="", save=False, filename=None, T=1
             for i in range(n_agents):
                 for j in range(T):
                     plt.plot(x[j, 4*i,traj].detach(), x[j, 4*i+1,traj].detach(), color=colors[i%12], marker='o', alpha=alphatraj)
-        if circles:
+        if circles and traj==0:
             for i in range(n_agents):
+                alphacircle = 0.5
                 r = min_dist/2
                 # if obst:
                 #     circle = plt.Circle((x[T-1, 4*i].detach(), x[T-1, 4*i+1].detach()), r, color='tab:purple', fill=False)
                 # else:
-                circle = plt.Circle((x[0, 4*i,traj].detach(), x[0, 4*i+1,traj].detach()), r, color=colors[i%12], alpha=alphatraj/2,
+                circle = plt.Circle((x[0, 4*i,traj].detach(), x[0, 4*i+1,traj].detach()), r, color=colors[i%12], alpha=alphacircle,
                                     zorder=10)
                 ax.add_patch(circle)
         ax.axes.xaxis.set_visible(axis)
@@ -127,13 +128,14 @@ def plot_trajectories_tracking(x, xref, n_agents, text="", save=False, filename=
             for i in range(n_agents):
                 for j in range(T):
                     plt.plot(x[j, 4*i,traj].detach(), x[j, 4*i+1,traj].detach(), color=colors[i%12], marker='o', alpha=alphatraj)
-        if circles:
+        if circles and traj==0:
             for i in range(n_agents):
+                alphacircle = 0.5
                 r = min_dist/2
                 # if obst:
                 #     circle = plt.Circle((x[T-1, 4*i].detach(), x[T-1, 4*i+1].detach()), r, color='tab:purple', fill=False)
                 # else:
-                circle = plt.Circle((x[T, 4*i,traj].detach(), x[T, 4*i+1,traj].detach()), r, color=colors[i%12], alpha=alphatraj/2,
+                circle = plt.Circle((x[T, 4*i,traj].detach(), x[T, 4*i+1,traj].detach()), r, color=colors[i%12], alpha=alphacircle,
                                     zorder=10)
                 ax.add_patch(circle)
         ax.axes.xaxis.set_visible(axis)
@@ -198,13 +200,14 @@ def plot_trajectories_tracking_dyn_obs(x, xref, n_agents, pos_obs, text="", save
             for i in range(n_agents):
                 for j in range(T):
                     plt.plot(x[j, 4*i,traj].detach(), x[j, 4*i+1,traj].detach(), color=colors[i%12], marker='o', alpha=alphatraj)
-        if circles:
+        if circles and traj==0:
             for i in range(n_agents):
+                alphacircle = 0.5
                 r = min_dist/2
                 # if obst:
                 #     circle = plt.Circle((x[T-1, 4*i].detach(), x[T-1, 4*i+1].detach()), r, color='tab:purple', fill=False)
                 # else:
-                circle = plt.Circle((x[0, 4*i,traj].detach(), x[0, 4*i+1,traj].detach()), r, color=colors[i%12], alpha=alphatraj/2,
+                circle = plt.Circle((x[0, 4*i,traj].detach(), x[0, 4*i+1,traj].detach()), r, color=colors[i%12], alpha=alphacircle,
                                     zorder=10)
                 ax.add_patch(circle)
         ax.axes.xaxis.set_visible(axis)
