@@ -36,7 +36,8 @@ Online_neurSLS/
 │   │── plots.py             # Visualization tools
 │── trained_models/         # Pretrained models
 │── GIF/                    # Performance demonstrations
-│── Main_OfflineT_neurSLS_obstacles.ipynb  # Offline training neuro SLS (dynamic obstacles example)
+│── Main_Offline_neurSLS_obstacles.ipynb  # Offline training neuro SLS (dynamic obstacles example)
+│── Main_Online_neurSLS_obstacles.ipynb   # Online update with the proposed approach (dynamic obstacles example)
 │── Main_Offline_neurSLS_mountains.ipynb   # Offline training neuro SLS (mountains example)
 │── Main_Online_neurSLS_mountains.ipynb    # Online update with the proposed approach (mountains example)
 │── README.md                # Documentation
@@ -55,7 +56,8 @@ Run the provided Jupyter notebooks for offline and online training:
    jupyter notebook
    ```
 2. **Open the desired notebook**:
-   - `Main_OfflineT_neurSLS_obstacles.ipynb`
+   - `Main_Offline_neurSLS_obstacles.ipynb`
+   - `Main_Online_neurSLS_obstacles.ipynb`
    - `Main_Offline_neurSLS_mountains.ipynb`
    - `Main_Online_neurSLS_mountains.ipynb`
 3. **Run the notebook cells** to train and evaluate the neurSLS controllers.

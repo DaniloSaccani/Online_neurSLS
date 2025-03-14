@@ -1,7 +1,6 @@
 import torch
 import torch.nn.functional as F
-
-from src.model_trk import ReferenceTrajectory
+from model_trk import ReferenceTrajectory
 
 
 def f_loss_states(t, x, sys, Q=None):

@@ -1,11 +1,9 @@
 import torch
 import matplotlib.pyplot as plt
 import numpy as np
-from networkx.utils import np_random_state
-from matplotlib import cbook, cm
-from matplotlib.colors import LightSource
+from matplotlib import cm
 
-from src.loss_functions import f_loss_states, f_loss_u, f_loss_ca, f_loss_obst, f_loss_obst_tracking, f_loss_obst_dyn_tracking
+from loss_functions import f_loss_states, f_loss_u, f_loss_ca, f_loss_obst, f_loss_obst_tracking, f_loss_obst_dyn_tracking
 
 
 def plot_trajectories(x, xbar, n_agents, text="", save=False, filename=None, T=100, obst=False, dots=False,
