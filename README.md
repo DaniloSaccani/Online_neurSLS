@@ -69,13 +69,13 @@ Run the provided Jupyter notebooks for offline and online training:
 1. Cloning the Repository
 
 ```bash
-git clone https://github.com/DecodEPFL/Distributed_neurSLS.git
+git clone https://github.com/DaniloSaccani/Online_neurSLS
 ```
 
 2. Navigate to the cloned directory:
 
 ```bash
-cd Distributed_neurSLS
+cd Online_neurSLS
 ```
 3. Install the required dependencies. We recommend using a virtual environment:
 ```bash
@@ -85,10 +85,11 @@ pip install -r requirements.txt
 ```
 
 ### Usage
-1. Adjust parameters in utils.py as needed.
-2. Run the main script to start training:
+1. Adjust parameters in src/utils.py as needed. 
+2. Launch Jupyter Notebook of the desired example
 ```bash
-python main.py
+jupyter notebook
+jupyter notebook Main_SelectedExample.ipynb
 ```
 ## Example
 
