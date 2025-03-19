@@ -1,6 +1,6 @@
 # Online_neurSLS
 
-This repository accompanies the paper **"Stabilizing Online Adaptation of Stable Neural Closed-loop Maps"** by Danilo Saccani, Luca Furieri, and Giancarlo Ferrari Trecate. 
+This repository accompanies the paper **"Stability Preserving Online Adaptation of Neural Closed-loop Maps"** by Danilo Saccani, Luca Furieri, and Giancarlo Ferrari Trecate. 
 It implements **Online Neural System Level Synthesis (Online neuroSLS)** using Recurrent Equilibrium Networks (RENs). 
 The neuroSLS framework enables learning over all stabilizing policies for nonlinear systems, ensuring closed-loop stability by design.
 The proposed approach allows the online adaptation of the neural closed-loop maps.
